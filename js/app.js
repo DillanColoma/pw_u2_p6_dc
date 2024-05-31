@@ -20,7 +20,9 @@ const app = Vue.createApp({
             //puedo declarar cualquier tipo de dato, los debo separa por comas
             mensaje: "Hola mundo propiedad reactiva",
             valor: 7,
-            lista: estudiantes
+            lista: estudiantes,
+            nombre: null,
+            apellido: null
         }
     },
     //Destinado para los métodos
@@ -34,12 +36,27 @@ const app = Vue.createApp({
         sumar() {
             this.valor = this.valor + 100;
         },
-        agregar(){
-            const nuevo={
-                nombre:"Dillan",
-                apellido:"Coloma"
+        agregar() {
+            console.log(this.nombre);
+            console.log(this.apellido);
+            const nuevo = {
+                nombre: this.nombre,
+                apellido: this.apellido
             }
             this.lista.unshift(nuevo);
+            this.resetear();
+        },
+        resetear() {
+            this.nombre = null;
+            this.apellido = null;
+        },
+        agregar2({ charCode }) {
+            console.log(charCode);
+            if (charCode !== 13) return;
+            if (this.nombre !== null && this.apellido !== null) {
+                this.agregar();
+            }
+
         }
 
 
